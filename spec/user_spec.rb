@@ -5,7 +5,9 @@ describe 'User' do
     User.delete_all
   end
 
-  let(:params) { { email: "test@gmail.com", password: "hello"} }
+  let(:params) { {     email: "test@gmail.com",
+                    password: "hello",
+                        name: "eddie" } }
   describe "User.create" do
     it "should add a user to the database" do
       expect {User.create(params)}.to change {User.count}.by(1)
