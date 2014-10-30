@@ -9,16 +9,25 @@ get '/' do
   erb :index
 end
 
-get '/signup' do
+get '/users/signup' do
   erb :signup
 end
 
-post '/profile' do
-  redirect '/profile'
+post '/users' do
+  @user = User.create(params)
+
+  if @user.save
+    session[:user_id] = @user.id
+    redirect "/users/#{@user.email}"
+  else
+    erb :index
+  end
 end
 
-get '/profile' do
-  @tweets = ["one", "two", "three"]
+get '/users/:email' do
+  @user = User.find_by(email: params[:email])
+  @tweets = Update.find_by(user_id: @user.id)
+
   erb :profile
 end
 
