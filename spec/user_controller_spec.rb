@@ -31,27 +31,27 @@ describe "UserController" do
     end
   end
 
-  describe "post '/signup'" do
+  describe "post '/users'" do
     it "for valid user credentials should set session[:user_id]" do
-      post "/signup", :params => { email: user_params[:email],
+      post "/users", :params => { email: user_params[:email],
                                   password: user_params[:password] }
       should set_session(:user_id)
     end
     it "for invalid user credentials should not set session[:user_id]" do
-      post "/signup", :params => { email: "andy",
+      post "/users", :params => { email: "andy",
                                   password: "incorrect" }
       should_not set_session(:user_id)
     end
   end
 
-  describe "post '/login'" do
+  describe "post '/users/login'" do
     it "for valid user credentials should set session[:user_id]" do
-      post "/login", :params => { email: user_params[:email],
+      post "/users/login", :params => { email: user_params[:email],
                                   password: user_params[:password] }
       should set_session(:user_id)
     end
     it "for invalid user credentials should not set session[:user_id]" do
-      post "/login", :params => { email: user_params[:email],
+      post "/users/login", :params => { email: user_params[:email],
                                   password: "incorrect" }
       should_not set_session(:user_id)
     end
