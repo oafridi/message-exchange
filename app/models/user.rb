@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :updates
   validates :email, :uniqueness => true
   validates :email, :format => {with: /[a-zA-Z0-9_.+]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]/}
+  validates :name, :presence => true
 
   def password
     @password ||= Password.new(password_hash)
