@@ -19,9 +19,6 @@ describe 'Update' do
       expect {Update.create(valid_tweet_params)}.to change {Update.count}.by(1)
     end
 
-    it "should prevent a Update without a name from being created" do
-      expect {Update.create(not_valid_tweet_params)}.to_not change {Update.count}.by(1)
-    end
   end
 
   describe Update do
@@ -29,6 +26,11 @@ describe 'Update' do
       [:body, :user].each do |method|
         should respond_to method
       end
+    end
+
+    it "should validate length of update > 0 char, < 140 char" do
+      should ensure_length_of(:body).is_at_least(1)
+      should ensure_length_of(:body).is_at_most(140)
     end
   end
 end
