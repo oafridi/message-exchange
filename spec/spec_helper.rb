@@ -20,3 +20,5 @@ end
 def app
   Sinatra::Application
 end
+
+I18n.enforce_available_locales = false
