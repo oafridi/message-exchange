@@ -21,3 +21,7 @@ get '/profile' do
   @tweets = ["one", "two", "three"]
   erb :profile
 end
+
+get '/signout' do
+  erb :index
+end

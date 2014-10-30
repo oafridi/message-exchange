@@ -10,22 +10,28 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-
-  <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <!--
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
   <title></title>
 </head>
 <body>
+
+  <script src="js/bootstrap.min.js"></script>
   <%= erb :_header %>
+  <% if flash[:success] %>
+  <div class="alert alert-success alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <%= flash[:success] %>
+  </div>
+  <% end %>
   <div class="container">
   <%= yield %>
 </div>
+  <script src="/js/application.js"></script>
+
 </body>
 </html>

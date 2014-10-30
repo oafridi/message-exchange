@@ -15,6 +15,8 @@ gem 'rake'
 
 gem 'shotgun'
 
+gem 'sinatra-flash'
+
 #added bcrypt for security
 gem 'bcrypt'
 
