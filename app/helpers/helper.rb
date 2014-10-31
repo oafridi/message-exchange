@@ -16,7 +16,7 @@ helpers do
         :user_name            => 'dummytest3210@gmail.com',
         :password             => 'viewsonic123',
         :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
-        :domain               => "localhost.localdomain" # the HELO domain provided by the client to the server
+        :domain               => "heroku.com" # the HELO domain provided by the client to the server
       }
     })
   end
