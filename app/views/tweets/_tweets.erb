@@ -2,7 +2,7 @@
 <div class="list-group">
   <ul class="list-group">
     <% tweets.each do |tweet| %>
-    <li class="list-group-item"><%= tweet.body %></li>
+    <li class="list-group-item"><%= erb :"tweets/_tweet", locals: {tweet: tweet} %></li>
     <% end %>
   </ul>
 </div>

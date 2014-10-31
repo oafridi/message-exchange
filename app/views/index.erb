@@ -3,3 +3,8 @@
         <p class="lead">Welcome to Lil Twitter!</p>
         <p><a class="btn btn-lg btn-success" href="/users/signup" role="button">Sign up today</a></p>
 </div>
+<div class="col-md-10">
+  <% if @tweets %>
+    <%= erb :"tweets/_tweets", locals: {tweets: @tweets} %>
+  <% end %>
+</div>
