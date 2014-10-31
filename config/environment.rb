@@ -20,6 +20,8 @@ require "sinatra/reloader" if development?
 require 'sinatra/flash'
 
 require 'erb'
+# include MD5 gem, should be part of standard ruby install
+require 'digest/md5'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
