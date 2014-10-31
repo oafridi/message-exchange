@@ -1,7 +1,10 @@
 get '/' do
   if logged_in?
     @user = User.find(session[:user_id])
-    redirect "/users/#{@user.email}"
+    # get tweets from following
+    @tweets = Update.limit(20).order(updated_at: :desc).where('user_id in (?)', *@user.following_ids )
+    #redirect "/users/#{@user.email}"
+    erb :index
   else
     @tweets = Update.includes(:user).limit(20).order(updated_at: :desc)
     erb :index
@@ -24,10 +27,35 @@ post '/users' do
 end
 
 get '/users/:email' do
-  @user = User.find_by(email: params[:email])
-  @tweets = Update.where(user_id: @user.id)
+  @user = User.includes(:updates).find_by(email: params[:email])
 
   erb :profile
 end
 
+post '/follow' do
+  @current_user = User.find(session[:user_id])
+  @user = User.includes(:updates).find(params[:user_id])
+  @current_user.following << @user
 
+  if @current_user.save
+    flash[:success] = "Now following #{@user.email}!"
+    redirect "/users/#{@user.email}"
+  else
+    flash[:errors] = "Something went wrong!"
+    redirect "/users/#{@user.email}"
+  end
+end
+
+post '/unfollow' do
+  @current_user = User.find(session[:user_id])
+  @user = User.includes(:updates).find(params[:user_id])
+  relation = Relationship.where(follower_id: @current_user.id).find_by(followed_id: @user.id)
+
+  if relation.destroy
+    flash[:success] = "No longer following #{@user.email}!"
+    redirect "/users/#{@user.email}"
+  else
+    flash[:errors] = "Something went wrong!"
+    redirect "/users/#{@user.email}"
+  end
+end

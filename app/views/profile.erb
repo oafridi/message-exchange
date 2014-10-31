@@ -1,17 +1,27 @@
 <div class="row">
   <div class="col-md-2">
-
-
     <%= erb :_gravatar, locals: {user: @user} %>
     <div class="span8">
         <h3><%= @user.name %></h3>
         <h5><%= @user.email %></h5>
-        <a href='/tweet/new'>Create New Tweet</a>
+        <% if @user.id == session[:user_id] %>
+          <a href='/tweet/new'>Create New Tweet</a>
+        <% elsif @user.follower_ids.include? session[:user_id] %>
+          <form action='/unfollow' method='post'>
+            <input type='hidden' name='user_id' value='<%= @user.id %>'>
+            <input type='submit' value='Unfollow'>
+          </form>
+        <% else %>
+          <form action='/follow' method='post'>
+            <input type='hidden' name='user_id' value='<%= @user.id %>'>
+            <input type='submit' value='Follow'>
+          </form>
+        <% end %>
     </div>
   </div>
   <div class="col-md-10">
-    <% if @tweets %>
-      <%= erb :"tweets/_tweets", locals: {tweets: @tweets} %>
+    <% if @user.updates %>
+      <%= erb :"tweets/_tweets", locals: {tweets: @user.updates} %>
     <% end %>
   </div>
 </div>

@@ -32,11 +32,11 @@ class Update < ActiveRecord::Base
 
 
   def hashtags
-    matches = self.body.match(/([#]\w+)/)
-    if matches.nil?
+    matches = self.body.scan(/([#]\w+)/)
+    if matches.empty?
       return nil
     else
-      matches.to_a
+      matches.flatten
     end
   end
 end
