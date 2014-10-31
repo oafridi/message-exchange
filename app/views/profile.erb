@@ -15,14 +15,7 @@
   </div>
   <div class="col-md-10">
     <% if @tweets %>
-    <h3>Tweets</h3>
-    <div class="list-group">
-      <ul class="list-group">
-      <% @tweets.each do |tweet| %>
-        <li class="list-group-item"><%= tweet.body %></li>
-      <% end %>
-      </ul>
-    </div>
+      <%= erb :"tweets/_tweet", locals: {tweets: @tweets} %>
     <% end %>
   </div>
 </div>
