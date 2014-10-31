@@ -1,5 +1,6 @@
+<!--[<%= @tweet.errors.full_messages %>]-->
 <form action="/tweet" method="post" >
   <label>New Tweet</label>
-  <textarea class="form-control" rows="3"></textarea>
+  <textarea class="form-control" rows="3" name="body"><%= @tweet.body %></textarea>
   <button type="submit" class="btn btn-primary">Create New Tweet</button>
 </form>
