@@ -1,12 +1,10 @@
 get '/' do
-  # if user is login go to profile page else login page
-  # if current_user
-  #   erb :profile
-  # else
-  #   erb :login
-  # end
-
-  erb :index
+  if logged_in?
+    @user = User.find(session[:user_id])
+    redirect "/users/#{@user.email}"
+  else
+    erb :index
+  end
 end
 
 get '/users/signup' do
@@ -14,7 +12,7 @@ get '/users/signup' do
 end
 
 post '/users' do
-  @user = User.create(params)
+  @user = User.new(params)
 
   if @user.save
     session[:user_id] = @user.id
@@ -31,6 +29,4 @@ get '/users/:email' do
   erb :profile
 end
 
-get '/signout' do
-  erb :index
-end
+

@@ -5,22 +5,12 @@
     </div>
 
     <div class="span8">
-        <h3>User Name: </h3>
-        <h6>Email: MyEmail@servidor.com</h6>
-        <h6>Ubication: Colombia</h6>
+        <h4><%= @user.name %></h4>
+        <h4><%= @user.email %></h4>
     </div>
   </div>
   <div class="col-md-10">
     <% if @tweets %>
-    <h3>Tweets</h3>
-    <div class="list-group">
-      <ul class="list-group">
-      <% @tweets.each do |tweet| %>
-        <li class="list-group-item"><%= tweet.body %></li>
-      <% end %>
-      </ul>
-    </div>
-    <% end %>
     <h3>Tweets</h3>
     <div class="list-group">
       <ul class="list-group">
