@@ -1,12 +1,16 @@
 <div class="row">
   <div class="col-md-2">
-    <div class="span2" >
-    <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+
+    <% @hash = Digest::MD5.hexdigest(@user.email.downcase) %>
+    <% if @hash %>
+    <div class="span2">
+      <img src="http://gravatar.com/avatar/<%= @hash %>"/>
     </div>
+    <% end %>
 
     <div class="span8">
-        <h4><%= @user.name %></h4>
-        <h4><%= @user.email %></h4>
+        <h6><%= @user.name %></h6>
+        <h6><%= @user.email %></h6>
     </div>
   </div>
   <div class="col-md-10">
