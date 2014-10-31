@@ -20,6 +20,7 @@ post '/users' do
 
   if @user.save
     session[:user_id] = @user.id
+    email("Welcome to twitter", :welcome_email)
     redirect "/users/#{@user.email}"
   else
     erb :index

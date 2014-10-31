@@ -17,6 +17,8 @@ gem 'shotgun'
 
 gem 'sinatra-flash'
 
+gem 'pony'
+
 #added bcrypt for security
 gem 'bcrypt'
 
