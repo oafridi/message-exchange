@@ -2,7 +2,8 @@ get '/' do
   if logged_in?
     @user = User.find(session[:user_id])
     # get tweets from following
-    @tweets = Update.limit(20).order(updated_at: :desc).where('user_id in (?)', *@user.following_ids )
+    #@tweets = Update.limit(20).order(updated_at: :desc).where(user_id: @user.following_ids )
+    @tweets = Update.limit(20).order(updated_at: :desc).where('user_id in (?) OR user_id = ?', @user.following_ids, @user.id )
     #redirect "/users/#{@user.email}"
     erb :index
   else
