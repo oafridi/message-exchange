@@ -3,7 +3,7 @@ get '/' do
     @user = User.find(session[:user_id])
     redirect "/users/#{@user.email}"
   else
-    @tweets = Update.limit(20).order(updated_at: :desc)
+    @tweets = Update.includes(:user).limit(20).order(updated_at: :desc)
     erb :index
   end
 end

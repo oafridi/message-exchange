@@ -1,4 +1,5 @@
 
 <%= tweet.body %>
-<%= tweet.created_at %>
+<%= tweet.time_since %> ago
 <%= tweet.user.email %>
+<%= erb :_gravatar, locals: {user: tweet.user} %>

@@ -1,0 +1,6 @@
+<% @hash = Digest::MD5.hexdigest(user.email.downcase) %>
+<% if @hash %>
+<div class="span2">
+  <img src="http://gravatar.com/avatar/<%= @hash %>"/>
+</div>
+<% end %>
