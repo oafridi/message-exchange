@@ -24,7 +24,7 @@ end
 
 get '/users/:email' do
   @user = User.find_by(email: params[:email])
-  @tweets = Update.find_by(user_id: @user.id)
+  @tweets = Update.where(user_id: @user.id)
 
   erb :profile
 end

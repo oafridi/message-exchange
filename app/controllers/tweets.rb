@@ -16,7 +16,7 @@ post '/tweet' do
   @tweet = @user.updates.new( body: params[:body] )
   if @tweet.save
     flash[:success] = "Tweet Posted!"
-    redirect "/profile"
+    redirect "/users/#{@user.email}"
   else
     flash[:errors] = "Format of the tweet was wrong."
     erb :"tweets/new"
