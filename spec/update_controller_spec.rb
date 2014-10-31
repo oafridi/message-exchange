@@ -16,25 +16,25 @@ describe "UpdateController" do
   let(:session) { {user_id: nil} }
 
   describe "get '/tweet/new'" do
-    it "should return status code 200" do
-      get '/tweet/new'
+    it "should return status code 200 if user is authenticated" do
+      get '/tweet/new', {}, {"rack.session" => {:user_id => sample_user.id}}
       expect(last_response.status).to be(200)
     end
     it "should show a form to create a tweet if user is authenticated" do
-      get '/tweet/new'
+      get '/tweet/new', {}, {"rack.session" => {:user_id => sample_user.id}}
       expect(last_response.body).to include('name="body"')
     end
     it "should show username if user is authenticated" do
       session[:user_id] = sample_user.user_id
-      get '/tweet/new'
+      get '/tweet/new', {}, {"rack.session" => {:user_id => sample_user.id}}
       expect(last_response.body).to include("#{sample_user.email}")
     end
   end
 
-  describe "post '/tweet/new'" do
+  describe "post '/tweet'" do
     it "should create a tweet in the database" do
       expect {
-        post '/tweet/new', :params => { body: sample_update_content }
+        post '/tweet', { body: sample_update_content[:body] }, {"rack.session" => {:user_id => sample_user.id}}
       }.to change {Update.count}.by(1)
     end
   end
