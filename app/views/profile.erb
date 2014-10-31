@@ -4,8 +4,9 @@
 
     <%= erb :_gravatar, locals: {user: @user} %>
     <div class="span8">
-        <h6><%= @user.name %></h6>
-        <h6><%= @user.email %></h6>
+        <h3><%= @user.name %></h3>
+        <h5><%= @user.email %></h5>
+        <a href='/tweet/new'>Create New Tweet</a>
     </div>
   </div>
   <div class="col-md-10">
@@ -15,4 +16,4 @@
   </div>
 </div>
 
-<a href='/tweet/new'>Create New Tweet</a>
+

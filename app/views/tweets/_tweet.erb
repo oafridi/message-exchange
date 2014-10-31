@@ -1,5 +1,23 @@
-
-<%= tweet.body %>
-<%= tweet.time_since %> ago
-<%= tweet.user.email %>
-<%= erb :_gravatar, locals: {user: tweet.user} %>
+<div class="span9">
+  <div class="row">
+    <div class="image span2">
+      <%= erb :_gravatar, locals: {user: tweet.user} %>
+    </div>
+    <div class="body span6 offset3">
+      <p><%= tweet.body %></p>
+    </div>
+  </div>
+  <div class="row span9">
+    <p>
+      <i class="icon-user"></i> by <a href="#"><%= tweet.user.name %></a>
+      | <i class="icon-calendar"></i> <%= tweet.time_since %> ago
+      | <i class="icon-share"></i> <a href="#">39 Retweets</a>
+      <% if tweet.hashtags %>
+        | <i class="icon-tags"></i> Tags :
+        <% tweet.hashtags.each do |hashtag| %>
+          <a href="#"><span class="label label-info"><%= hashtag %></span></a>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>

@@ -29,4 +29,14 @@ class Update < ActiveRecord::Base
       return "#{seconds} seconds"
     end
   end
+
+
+  def hashtags
+    matches = self.body.match(/([#]\w+)/)
+    if matches.nil?
+      return nil
+    else
+      matches.to_a
+    end
+  end
 end
