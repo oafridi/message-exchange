@@ -1,10 +1,19 @@
+<% unless logged_in? %>
 <div class="jumbotron">
-        <h1>Lil Twitter</h1>
-        <p class="lead">Welcome to Lil Twitter!</p>
-        <p><a class="btn btn-lg btn-success" href="/users/signup" role="button">Sign up today</a></p>
+  <h1>Lil Twitter</h1>
+  <p class="lead">Welcome to Lil Twitter!</p>
+
+  <p><a class="btn btn-lg btn-success" href="/users/signup" role="button">Sign up today</a></p>
+
 </div>
+<% end %>
 <div class="col-md-10">
   <% if @tweets %>
+  <% if logged_in? %>
+  <h3>Tweets from People You Follow</h3>
+  <% else %>
+  <h3>Most Recent Tweets</h3>
+  <% end %>
     <%= erb :"tweets/_tweets", locals: {tweets: @tweets} %>
   <% end %>
 </div>
